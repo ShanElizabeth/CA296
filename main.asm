@@ -27,34 +27,22 @@ includelib msvcrt.lib
 ;
 ; Data & Code
 ;
-
+EXTERNDEF ascend:near
 .data
+N=8
+array DWORD		1,70,65,3,102,100,5,2
 
-row DWORD 0
 
-idx DWORD 0
 
-.code 
+.code
 	main:nop
-	invoke version
+		push offset array
+		push N
+		call ascend
 
-	invoke setPattern,1
+		invoke writeArray, addr array ,N
 
-	loopy:
-		invoke readRow,row
-		mov ebx,1
-		mov ecx,idx
-		shl ebx,CL
-		and eax,ebx
-		not eax
-		
 
-		
-		invoke writeRow,row,eax
-		inc row
-		inc idx
-		invoke Sleep,500
-		jmp loopy
+		invoke ExitProcess,0
 
-	invoke ExitProcess,0
 	end main
