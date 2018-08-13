@@ -58,7 +58,7 @@ right DWORD 0
 
 		xor eax,ebx
 		invoke writeRow,row,eax
-		invoke Sleep,50
+		invoke Sleep,500
 		inc row 
 		jmp loopy
 	
